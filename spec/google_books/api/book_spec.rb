@@ -15,6 +15,11 @@ module GoogleBooks
         subject.title.should eq 'JQuery in Action'
       end
       
+      it "should contain a subtitle in the title if there is one" do
+        book = API.search('isbn:9780596517748').first
+        book.title.should eq 'JavaScript: The Good Parts'
+      end
+      
       it "should have an array of authors with the correct names" do
         subject.authors.length.should eq 2
         subject.authors[0].should eq "Bear Bibeault"
@@ -63,8 +68,13 @@ module GoogleBooks
       
       it "should contain a covers hash and keys should be underscored vs camelCased" do
         subject.covers.should be_a Hash
-        subject.covers.keys.should_not include 'smallThumbnail'
-        subject.covers.keys.should include 'small_thumbnail'
+        subject.covers.keys.should_not include :smallThumbnail
+        subject.covers.keys.should include :small_thumbnail
+      end
+      
+      it "should not have curls on the cover urls" do
+        subject.covers[:small_thumbnail].should_not include '&edge=curl'
+        subject.covers[:thumbnail].should_not include '&edge=curl'
       end
       
       it "should contains a preview link" do
