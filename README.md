@@ -46,20 +46,20 @@ For example:
 Book Attributes
 ---------------
 * `title`: *String*
-
+  
   This will append a subtitle if one exists, like "JavaScript: The Good Parts"
 * `authors`: *Array*
 * `publisher`: *String*
-* `published\_date`: *Date*
+* `published_date`: *Date*
 * `isbn`: *String*
-* `isbn\_10`: *String*
+* `isbn_10`: *String*
 * `page_count`: *FixNum*
 * `categories`: *Array*
 * `description`: *String*
-* `average\_rating`: *Float*
-* `ratings\_count`: *FixNum*
+* `average_rating`: *Float*
+* `ratings_count`: *FixNum*
 * `covers`: *Hash*
 
   The keys are :small\_thumbnail, :thumbnail, :small, :medium, :large, :extra\_large
-* `preview\_link`: *String*
-* `info\_link`: *String*
+* `preview_link`: *String*
+* `info_link`: *String*
