@@ -18,7 +18,11 @@ The usage is similar to that of [google-book](https://github.com/papercavalier/g
     #=> "9780596517748"
     puts book.covers[:thumbnail]
     #=> "http://bks8.books.google.com/books?id=..."
-  
+
+In addition to the query, the `GoogleBooks::API.search` method takes in a hash of 3 different options:
+*   `count`: The number of results that you want returned, currently the default is 10 (set by Google)
+*   `page`: The page of results that you want.  Combine this with `total_results` method of the `GoogleBooks::API::Response`, and implement paging in your application
+*   `api_key`: For production apps, Google requires either [OAuth 2.0](http://code.google.com/apis/books/docs/v1/using.html#AboutAuthorization) or an [API key](http://code.google.com/apis/books/docs/v1/using.html#APIKey) to request public data. See the [API Documentation](http://code.google.com/apis/books/docs/v1/using.html#auth) for more information.
 
 Queries
 -------
