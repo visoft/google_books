@@ -8,16 +8,16 @@ Usage
 -----
 The usage is similar to that of [google-book](https://github.com/papercavalier/google-book), but the semantics are a little different
 
-  require 'google_books' # Or hey, add it to your Gemfile
+    require 'google_books' # Or hey, add it to your Gemfile
   
-  books = GoogleBooks::API.search('Douglas Crockford')
-  book = books.first
-  puts book.title
-  #=> "JavaScript: The Good Parts"
-  puts book.isbn
-  #=> "9780596517748"
-  puts book.covers[:thumbnail]
-  #=> "http://bks8.books.google.com/books?id=..."
+    books = GoogleBooks::API.search('Douglas Crockford')
+    book = books.first
+    puts book.title
+    #=> "JavaScript: The Good Parts"
+    puts book.isbn
+    #=> "9780596517748"
+    puts book.covers[:thumbnail]
+    #=> "http://bks8.books.google.com/books?id=..."
   
 
 Queries
@@ -32,16 +32,16 @@ Within your query that you pass to the search method, you can use special keywor
 
 For example:
   
-  # Get the book with the isbn of 9781118035580
-  books = GoogleBooks::API.search('isbn:9781118035580')
-  book = books.first
+    # Get the book with the isbn of 9781118035580
+    books = GoogleBooks::API.search('isbn:9781118035580')
+    book = books.first
 
-  puts book.title
-  #=> "Hands - on ASP.NET AJAX Control Toolkit"
-  puts book.authors.first
-  #=> "Damien White" (Shameless plug)
-  puts book.covers[:thumbnail]
-  #=> "http://bks7.books.google.com/books?id=..."
+    puts book.title
+    #=> "Hands - on ASP.NET AJAX Control Toolkit"
+    puts book.authors.first
+    #=> "Damien White" (Shameless plug)
+    puts book.covers[:thumbnail]
+    #=> "http://bks7.books.google.com/books?id=..."
 
 Book Attributes
 ---------------
