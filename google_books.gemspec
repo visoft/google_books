@@ -11,8 +11,6 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/visoft/google_books"
   s.summary     = %q{A Ruby wrapper around the Google Books API}
   s.description = %q{A Ruby wrapper that allows you to query the Google Books API. This project was inspired by google-book, see the README for more information}
-
-  s.rubyforge_project = "google_books"
   
   s.add_dependency('httparty')
   s.add_dependency('hashie')
