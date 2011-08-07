@@ -45,23 +45,25 @@ For example:
 
 Book Attributes
 ---------------
-* `title`: *String*
-  
-  This will append a subtitle if one exists, like "JavaScript: The Good Parts"
-* `authors`: *Array*
-* `publisher`: *String*
-* `published_date`: *Date*
-* `isbn`: *String*
-* `isbn_10`: *String*
-* `page_count`: *FixNum*
-* `categories`: *Array*
-* `description`: *String*
-* `average_rating`: *Float*
-* `ratings_count`: *FixNum*
-* `covers`: *Hash*
+*   `title`: *String*
 
-  The keys are `:thumbnail`, `:small`, `:medium`, `:large`, `:extra_large`
-  
-  Not all of the image URLs are guaranteed to return something.  Stick with thumbnail or small for the best results 
-* `preview_link`: *String*
-* `info_link`: *String*
+    This will append a subtitle if one exists, like "JavaScript: The Good Parts"
+
+*   `authors`: *Array*
+*   `publisher`: *String*
+*   `published_date`: *Date*
+*   `isbn`: *String*
+*   `isbn_10`: *String*
+*   `page_count`: *FixNum*
+*   `categories`: *Array*
+*   `description`: *String*
+*   `average_rating`: *Float*
+*   `ratings_count`: *FixNum*
+*   `covers`: *Hash*
+
+    The keys are `:thumbnail`, `:small`, `:medium`, `:large`, `:extra\_large`
+
+    Not all of the image URLs are guaranteed to return something.  Stick with thumbnail or small for the best results 
+
+*   `preview_link`: *String*
+*   `info_link`: *String*
