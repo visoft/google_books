@@ -60,6 +60,8 @@ Book Attributes
 * `ratings_count`: *FixNum*
 * `covers`: *Hash*
 
-  The keys are :small\_thumbnail, :thumbnail, :small, :medium, :large, :extra\_large
+  The keys are `:thumbnail`, `:small`, `:medium`, `:large`, `:extra_large`
+  
+  Not all of the image URLs are guaranteed to return something.  Stick with thumbnail or small for the best results 
 * `preview_link`: *String*
 * `info_link`: *String*

@@ -66,15 +66,29 @@ module GoogleBooks
         subject.ratings_count.should be_a Fixnum
       end
       
-      it "should contain a covers hash and keys should be underscored vs camelCased" do
+      it "should contain a covers hash" do
         subject.covers.should be_a Hash
-        subject.covers.keys.should_not include :smallThumbnail
-        subject.covers.keys.should include :small_thumbnail
+        subject.covers.keys.should include :thumbnail
+        subject.covers.keys.should include :small
+        subject.covers.keys.should include :medium
+        subject.covers.keys.should include :large
+        subject.covers.keys.should include :extra_large        
       end
       
       it "should not have curls on the cover urls" do
-        subject.covers[:small_thumbnail].should_not include '&edge=curl'
-        subject.covers[:thumbnail].should_not include '&edge=curl'
+        subject.covers[:thumbnail].should_not include 'edge=curl'
+        subject.covers[:small].should_not include 'edge=curl'
+        subject.covers[:medium].should_not include 'edge=curl'
+        subject.covers[:large].should_not include 'edge=curl'
+        subject.covers[:extra_large].should_not include 'edge=curl'
+      end
+      
+      it "should have the cover url zoom level" do
+        subject.covers[:thumbnail].should include 'zoom=5'
+        subject.covers[:small].should include 'zoom=1'
+        subject.covers[:medium].should include 'zoom=2'
+        subject.covers[:large].should include 'zoom=3'
+        subject.covers[:extra_large].should include 'zoom=6'
       end
       
       it "should contains a preview link" do

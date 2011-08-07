@@ -45,30 +45,26 @@ module GoogleBooks
       
       def fixup_covers
         return {} if @book.imageLinks.nil?
-        @book.imageLinks.inject({}) { |x, (k,v)| x[underscore(k).to_sym] = clean_cover_url(v); x }
+        url = @book.imageLinks.first[1]
+        {
+          :thumbnail => cover_url(url, 5),
+          :small => cover_url(url, 1),
+          :medium => cover_url(url, 2),
+          :large => cover_url(url, 3),
+          :extra_large => cover_url(url, 6)                                        
+        }
       end
-      
-      def underscore(camel_cased_word)
-        # Snagged from the ActiveSupport Inflector method underscore
-        # http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-underscore
-        # Didn't want to include ActiveSupport for just this method
-        word = camel_cased_word.to_s.dup
-        word.gsub!(/::/, '/')
-        word.gsub!(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
-        word.gsub!(/([a-z\d])([A-Z])/,'\1_\2')
-        word.tr!("-", "_")
-        word.downcase!
-        word
-      end
-      
+
       def titlize(word)
         # From http://snippets.dzone.com/posts/show/294
         non_capitalized = %w{of etc and by the for on is at to but nor or a via}
         word.gsub(/\b[a-z]+/){ |w| non_capitalized.include?(w) ? w : w.capitalize  }.sub(/^[a-z]/){|l| l.upcase }.sub(/\b[a-z][^\s]*?$/){|l| l.capitalize }
       end
       
-      def clean_cover_url(url)
-        url.gsub('&edge=curl', '') # Who wants the curl on their images
+      def cover_url(url, zoom)
+        url.
+          gsub(/zoom=\d/, "zoom=#{zoom}").  # Set the zoom level
+          gsub(/&edge=curl/, '')            # Who wants the curl on their images
       end
     end
   end
