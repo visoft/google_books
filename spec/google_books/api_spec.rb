@@ -20,6 +20,11 @@ module GoogleBooks
         API.send(:query).should include 'maxResults=20'
       end
       
+      it "should accept in an API key" do
+        API.search('damien white', :api_key => 'ABCDEFG')
+        API.send(:query).should include 'key=ABCDEFG'
+      end
+      
       it "should join parameters" do
         API.search('damien white', :count => 20, :page => 2)
         API.send(:query).should include 'startIndex=2&maxResults=20'

@@ -15,10 +15,13 @@ module GoogleBooks
       # * `:page`, which specifies the page.
       #
       # * `:count`, which specifies the number of results per page.
+      #
+      # * `:api_key`, your [API key](http://code.google.com/apis/books/docs/v1/using.html#auth) for making requests against the Google Books API.
       def search(query, opts ={})
         self.parameters = { 'q' => query }
         parameters['startIndex'] = opts[:page]  if opts[:page]
         parameters['maxResults'] = opts[:count] if opts[:count]
+        parameters['key'] = opts[:api_key] if opts[:api_key]
         
         result = get(url.to_s)
         Response.new result
