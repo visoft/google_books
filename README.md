@@ -57,7 +57,10 @@ Book Attributes
 
 *   `authors`: *Array*
 *   `publisher`: *String*
-*   `published_date`: *Date*
+*   `published_date`: *String*
+
+    The `published_date` is represented by the format YYYY-MM-DD with MM and DD being optional
+    
 *   `isbn`: *String*
 *   `isbn_10`: *String*
 *   `page_count`: *FixNum*

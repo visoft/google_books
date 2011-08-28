@@ -31,9 +31,18 @@ module GoogleBooks
         subject.publisher.should include "Manning"
       end
       
-      it "should have a published date in date format" do
-        subject.published_date.should be_a Date
-        subject.published_date.should eq Date.new(2010, 6, 30)
+      it "should have a published date in sting format" do
+        subject.published_date.should eq "2010-06-30"
+      end
+      
+      it "should handle a published date that is only a year" do
+        book = API.search('isbn:9781934356166').first
+        book.published_date.should eq "2009"
+      end
+      
+      it "should handle a published date that is only a month and a year" do
+        book = API.search('isbn:9780954344405').first
+        book.published_date.should eq "2003-01"
       end
       
       it "should have description (which may be blank)" do

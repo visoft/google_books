@@ -12,7 +12,11 @@ module GoogleBooks
       end
       
       private
-      
+
+      def clean_published_date(pub_date)
+        pub_date.to_s
+      end
+
       def parse_item(item)
         volume_info = item['volumeInfo']
         @book = Hashie::Mash.new volume_info
@@ -23,7 +27,9 @@ module GoogleBooks
         end
         @authors = @book.authors || []
         @publisher = @book.publisher
-        @published_date = @book.publishedDate
+
+        @published_date = clean_published_date(@book.publishedDate)
+
         @description = @book.description
         @isbn = get_isbn_for_book
         @isbn_10 = get_isbn_for_book(10)

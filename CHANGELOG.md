@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-v0.0.1
+v0.1.0
 ------
 This is the initial version of google_books
 
@@ -30,3 +30,8 @@ This is the initial version of google_books
         * `:extra_large`
   *   `preview_link` - *String*
   *   `info_link` - *String*
+
+v0.2.0
+------
+*   Bug Fixes
+      *   The publishedDate field in the Google Books API are strings in the format of YYYY-MM-DD. Sometimes it's just YYYY and other times it's YYYY-MM.  Previously the `published_date` attribute was a Date type, now it is a string and you can convert the date however you want in your applications.
