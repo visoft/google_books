@@ -13,22 +13,14 @@ module GoogleBooks
       
       private
 
-      def clean_published_date(pub_date)
-        pub_date.to_s
-      end
-
       def parse_item(item)
         volume_info = item['volumeInfo']
         @book = Hashie::Mash.new volume_info
-        if @book.subtitle.nil?
-          @title = @book.title
-        else
-          @title = "#{@book.title}: #{titlize(@book.subtitle)}"
-        end
+        @title = build_title(@book)
         @authors = @book.authors || []
         @publisher = @book.publisher
 
-        @published_date = clean_published_date(@book.publishedDate)
+        @published_date = @book.publishedDate.to_s
 
         @description = @book.description
         @isbn = get_isbn_for_book
@@ -41,7 +33,12 @@ module GoogleBooks
         @preview_link = @book.previewLink
         @info_link = @book.infoLink
       end
-      
+
+      def build_title(book)
+        return book.title if book.subtitle.nil?
+        "#{book.title}: #{titlize(book.subtitle)}"
+      end
+
       def get_isbn_for_book(type=13)
         return nil if @book.industryIdentifiers.nil?
         isbn = @book.industryIdentifiers.find { |id| id.type == "ISBN_#{type}" }
