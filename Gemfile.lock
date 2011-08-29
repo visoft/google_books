@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    google_books (0.1)
+    google_books (0.2.0)
       hashie
       httparty
 
