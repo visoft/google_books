@@ -12,18 +12,16 @@ module GoogleBooks
       end
       
       private
-      
+
       def parse_item(item)
         volume_info = item['volumeInfo']
         @book = Hashie::Mash.new volume_info
-        if @book.subtitle.nil?
-          @title = @book.title
-        else
-          @title = "#{@book.title}: #{titlize(@book.subtitle)}"
-        end
+        @title = build_title(@book)
         @authors = @book.authors || []
-        @publisher = @book.publisher
-        @published_date = @book.publishedDate
+        @publisher = normalize_publisher(@book.publisher)
+
+        @published_date = @book.publishedDate.to_s
+
         @description = @book.description
         @isbn = get_isbn_for_book
         @isbn_10 = get_isbn_for_book(10)
@@ -35,7 +33,27 @@ module GoogleBooks
         @preview_link = @book.previewLink
         @info_link = @book.infoLink
       end
+
+      def build_title(book)
+        return book.title if book.subtitle.nil?
+        "#{book.title}: #{titlize(book.subtitle)}"
+      end
       
+      def normalize_publisher(name)
+        return name if name.blank?
+        
+        name.
+          gsub(/[ ,]+Inc.?$/i, ' Inc.').
+          gsub(/[ ,]+Llc.?$/i, ' LLC.').
+          gsub(/[ ,]+Ltd.?$/i, ' Ltd.').
+          gsub(/Intl( |$)/i) { "International#{$1}" }.
+          gsub(/Pr( |$)/i) { "Press#{$1}" }.
+          gsub(/Pub Group( |$)/i) { "Publishing Group#{$1}" }.
+          gsub(/Pub( |$)/i) { "Publishers#{$1}" }.
+          gsub(/Pubns( |$)/i) { "Publications#{$1}" }.
+          gsub(/Univ( |$)/i) { "University#{$1}" }
+      end
+
       def get_isbn_for_book(type=13)
         return nil if @book.industryIdentifiers.nil?
         isbn = @book.industryIdentifiers.find { |id| id.type == "ISBN_#{type}" }
