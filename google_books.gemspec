@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.add_dependency('httparty')
   s.add_dependency('hashie')
   
+  s.add_development_dependency('rake', '~> 0.8.7')
   s.add_development_dependency('autotest')
   s.add_development_dependency('rspec')
   s.add_development_dependency('webmock')
