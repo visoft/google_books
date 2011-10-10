@@ -89,6 +89,12 @@ module GoogleBooks
           book = Book.new(item)
           book.publisher.should eq "Publisher University Press"
         end
+        
+        it "should handle strings with apostrophes" do
+          item['volumeInfo']['publisher'] = "O'Reilly Media, Inc."
+          book = Book.new(item)
+          book.publisher.should eq "O'Reilly Media Inc."
+        end
       end
       
       describe "published_date" do
