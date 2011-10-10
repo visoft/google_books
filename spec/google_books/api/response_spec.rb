@@ -15,6 +15,11 @@ module GoogleBooks
         response.first.should be_a Book
       end
       
+      it "should correctly parse O'Reilly Media Inc" do
+        response = API.search('Douglas Crockford')
+        book = response.first
+        book.publisher.should eq "O'Reilly Media Inc."
+      end
     end
   end
 end
