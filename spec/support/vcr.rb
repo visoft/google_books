@@ -1,4 +1,5 @@
 require 'vcr'
+YAML::ENGINE.yamler = 'syck'
 
 VCR.config do |c|
   c.cassette_library_dir = File.dirname(__FILE__) + '/../fixtures/cassette_library'
