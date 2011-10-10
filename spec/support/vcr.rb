@@ -1,4 +1,5 @@
 require 'vcr'
+require 'yaml'
 YAML::ENGINE.yamler = 'syck'
 
 VCR.config do |c|

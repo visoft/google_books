@@ -23,6 +23,7 @@ GEM
       rbx-require-relative (> 0.0.4)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
+    rake (0.8.7)
     rbx-require-relative (0.0.5)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
@@ -58,6 +59,7 @@ PLATFORMS
 DEPENDENCIES
   autotest
   google_books!
+  rake (~> 0.8.7)
   rspec
   ruby-debug
   ruby-debug19
