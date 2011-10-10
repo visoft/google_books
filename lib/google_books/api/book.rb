@@ -40,7 +40,7 @@ module GoogleBooks
       end
       
       def normalize_publisher(name)
-        return name if name.blank?
+        return name if (name.nil? || name.empty?)
         
         name.
           gsub(/[ ,]+Inc.?$/i, ' Inc.').
