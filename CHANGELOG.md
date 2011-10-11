@@ -37,3 +37,10 @@ v0.2.0
       *   Standardized publisher names in a similar fashion to the [google-book gem](https://rubygems.org/gems/google-book)
 *   Bug Fixes
       *   The publishedDate field in the Google Books API are strings in the format of YYYY-MM-DD. Sometimes it's just YYYY and other times it's YYYY-MM.  Previously the `published_date` attribute was a Date type, now it is a string and you can convert the date however you want in your applications.
+v0.2.1
+------
+*   Bug Fixes
+      *   Removed call to blank? in the `normalize_publisher` method of the Book class
+*   Other
+      *   Added specific versions for required gems
+      *   Split VCR cassettes based on the version (first 2 digits) since 1.8.7 output was different than 1.9.2. Hoping to find a better solution for this scenario.
