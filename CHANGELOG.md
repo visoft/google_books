@@ -43,4 +43,4 @@ v0.2.1
       *   Removed call to blank? in the `normalize_publisher` method of the Book class
 *   Other
       *   Added specific versions for required gems
-      *   Split VCR cassettes based on the version (first 2 digits) since 1.8.7 output was different than 1.9.2. Hoping to find a better solution for this scenario.
+      *   Fixed VCR cassette problem between Ruby 1.8.7 and 1.9.2 (Run the tests using 1.8.7 first and then 1.9.2 to reuse the same cassette)
