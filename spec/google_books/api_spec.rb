@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
   
 module GoogleBooks
   describe API do
@@ -27,7 +27,10 @@ module GoogleBooks
       
       it "should join parameters" do
         API.search('damien white', :count => 20, :page => 2)
-        API.send(:query).should include 'startIndex=2&maxResults=20'
+        API.send(:query).should include 'startIndex=2'
+        API.send(:query).should include 'maxResults=20'
+        API.send(:query).should include 'q=damien+white'
+        API.send(:query).count('&').should eq 2 
       end
       
       it "should return the proper number results based on the count passed in" do

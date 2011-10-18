@@ -4,3 +4,4 @@ pkg/*
 spec/fixtures/cassette_library/*.yml
 .idea/*
 .DS_Store
+.rbx
