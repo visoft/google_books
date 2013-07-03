@@ -44,3 +44,8 @@ v0.2.1
 *   Other
       *   Added specific versions for required gems
       *   Fixed VCR cassette problem between Ruby 1.8.7 and 1.9.2 (Run the tests using 1.8.7 first and then 1.9.2 to reuse the same cassette)
+
+v0.2.2
+------
+*   Other
+      *   Dependencies are now >= vs. ~>
