@@ -6,3 +6,7 @@ spec/fixtures/cassette_library/*.yml
 .DS_Store
 .rbx
 Gemfile.lock
+.rvmrc
+.ruby-version
+.ruby-gemset
+
