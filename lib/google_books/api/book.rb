@@ -5,12 +5,12 @@ module GoogleBooks
                   :isbn, :isbn_10, :page_count, :categories,
                   :description, :average_rating, :ratings_count,
                   :covers, :preview_link, :info_link
-      
+
       def initialize(item)
         return if item.nil?
         parse_item(item)
       end
-      
+
       private
 
       def parse_item(item)
@@ -26,7 +26,7 @@ module GoogleBooks
         @isbn = get_isbn_for_book
         @isbn_10 = get_isbn_for_book(10)
         @page_count = @book.pageCount
-        @categories = @book.categories
+        @categories = @book.categories || []
         @average_rating = @book.averageRating
         @ratings_count = @book.ratingsCount
         @covers = fixup_covers
@@ -38,10 +38,10 @@ module GoogleBooks
         return book.title if book.subtitle.nil?
         "#{book.title}: #{titlize(book.subtitle)}"
       end
-      
+
       def normalize_publisher(name)
         return name if (name.nil? || name.empty?)
-        
+
         name.
           gsub(/[ ,]+Inc.?$/i, ' Inc.').
           gsub(/[ ,]+Llc.?$/i, ' LLC.').
@@ -60,7 +60,7 @@ module GoogleBooks
         return nil if isbn.nil?
         isbn.identifier
       end
-      
+
       def fixup_covers
         return {} if @book.imageLinks.nil?
         url = @book.imageLinks.first[1]
@@ -69,7 +69,7 @@ module GoogleBooks
           :small => cover_url(url, 1),
           :medium => cover_url(url, 2),
           :large => cover_url(url, 3),
-          :extra_large => cover_url(url, 6)                                        
+          :extra_large => cover_url(url, 6)
         }
       end
 
@@ -78,7 +78,7 @@ module GoogleBooks
         non_capitalized = %w{of etc and by the for on is at to but nor or a via}
         word.gsub(/\b[a-z]+/){ |w| non_capitalized.include?(w) ? w : w.capitalize  }.sub(/^[a-z]/){|l| l.upcase }.sub(/\b[a-z][^\s]*?$/){|l| l.capitalize }
       end
-      
+
       def cover_url(url, zoom)
         url.
           gsub(/zoom=\d/, "zoom=#{zoom}").  # Set the zoom level
