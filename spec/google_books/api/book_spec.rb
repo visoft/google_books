@@ -23,6 +23,8 @@ module GoogleBooks
         subject.id.should eq "rokQngEACAAJ"
       end
 
+      it "should have a published_date" do
+        subject.published_date.should eq "2010"
       end
 
       it "should contain a subtitle in the title if there is one" do
@@ -101,25 +103,6 @@ module GoogleBooks
           book = Book.new(item)
           book.publisher.should eq "O'Reilly Media Inc."
         end
-      end
-
-      describe "published_date" do
-        it "should have a published date in sting format" do
-          subject.published_date.should eq "2010-06-30"
-        end
-
-        it "should handle a published date that is only a year" do
-          book = API.search('isbn:9781934356166').first
-          book.published_date.should eq "2009"
-        end
-
-        # NOTE: This test was removed because this book no longer has just a month and year in Google's DB
-        #       It returns 2003-01-01. They may have added the first day of the month as a default for these dates
-        #       The spec is here for history, and in case a two digit date arises
-        # it "should handle a published date that is only a month and a year" do
-        #   book = API.search('isbn:9780954344405').first
-        #   book.published_date.should eq "2003-01"
-        # end
       end
 
       it "should have description (which may be blank)" do
