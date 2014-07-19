@@ -17,6 +17,11 @@ module GoogleBooks
 
       it "should have a title" do
         subject.title.should eq 'jQuery in action'
+
+      it "should have an id" do
+        subject.id.should eq "rokQngEACAAJ"
+      end
+
       end
 
       it "should contain a subtitle in the title if there is one" do
