@@ -16,7 +16,8 @@ module GoogleBooks
       end
 
       it "should have a title" do
-        subject.title.should eq 'jQuery in action'
+        subject.title.should eq "JQuery in Action"
+      end
 
       it "should have an id" do
         subject.id.should eq "rokQngEACAAJ"
