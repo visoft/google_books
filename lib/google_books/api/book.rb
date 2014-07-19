@@ -4,7 +4,7 @@ module GoogleBooks
       attr_reader :title, :authors, :publisher, :published_date,
                   :isbn, :isbn_10, :page_count, :categories,
                   :description, :average_rating, :ratings_count,
-                  :covers, :preview_link, :info_link
+                  :covers, :preview_link, :info_link, :id
 
       def initialize(item)
         return if item.nil?
@@ -14,6 +14,7 @@ module GoogleBooks
       private
 
       def parse_item(item)
+        @id = item['id']
         volume_info = item['volumeInfo']
         @book = Hashie::Mash.new volume_info
         @title = build_title(@book)
