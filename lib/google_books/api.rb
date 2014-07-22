@@ -41,9 +41,7 @@ module GoogleBooks
       private
 
       def query
-        parameters.
-          map { |k, v| "#{k}=#{CGI.escape(v.to_s)}" }.
-          join('&')
+        URI.encode_www_form parameters
       end
 
       def result(path = '/books/v1/volumes')
