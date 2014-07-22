@@ -1,4 +1,3 @@
-require 'cgi'
 require 'httparty'
 require 'hashie'
 
