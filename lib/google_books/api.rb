@@ -2,6 +2,10 @@ module GoogleBooks
   # A simple wrapper around the Google Books API
   module API
     include HTTParty
+    base_uri 'https://www.googleapis.com/books/v1'
+
+    Error = Class.new(StandardError)
+
     class << self
 
       # The search parameters.
@@ -23,7 +27,7 @@ module GoogleBooks
         parameters['maxResults'] = opts[:count] if opts[:count]
         parameters['key'] = opts[:api_key] if opts[:api_key]
 
-        Response.new result
+        Response.new request("/volumes")
       end
 
       # Query the Google Books API to find a book by its unique VolumeID.
@@ -35,7 +39,7 @@ module GoogleBooks
         self.parameters = {}
         parameters['key'] = opts[:api_key] if opts[:api_key]
 
-        Book.new result("/books/v1/volumes/#{id}")
+        Book.new request("/volumes/#{id}")
       end
 
       private
@@ -44,8 +48,10 @@ module GoogleBooks
         URI.encode_www_form parameters
       end
 
-      def result(path = '/books/v1/volumes')
-        get URI::HTTPS.build(host: 'www.googleapis.com', path: path, query: query)
+      def request(path)
+        get(path, { query: query }).tap do |response|
+          raise Error, response['error']['message'] if response.has_key?('error')
+        end
       end
     end
   end
