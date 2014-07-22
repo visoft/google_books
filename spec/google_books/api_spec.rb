@@ -50,7 +50,7 @@ module GoogleBooks
         API.send(:query).should include 'key=ABCDEFG'
       end
 
-      it "should return a response" do
+      it "should return a book" do
         API.find('rokQngEACAAJ').should be_a API::Book
       end
     end
