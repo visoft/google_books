@@ -1,9 +1,11 @@
-lib =  File.dirname(__FILE__)
-
-require 'cgi'
 require 'httparty'
 require 'hashie'
 
-require "#{lib}/google_books/api"
-require "#{lib}/google_books/api/response"
-require "#{lib}/google_books/api/book"
+module GoogleBooks
+  autoload :API, 'google_books/api'
+
+  module API
+    autoload :Response, 'google_books/api/response'
+    autoload :Book,     'google_books/api/book'
+  end
+end
