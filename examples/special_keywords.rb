@@ -1,4 +1,6 @@
-require File.dirname(__FILE__) + '/../lib/google_books'
+$LOAD_PATH.unshift File.expand_path('../lib', File.dirname(__FILE__))
+
+require 'google_books'
 
 # Using the isbn keyword
 books = GoogleBooks::API.search('isbn:9781118035580')
